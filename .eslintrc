@@ -1,8 +1,10 @@
 {
   "extends": "airbnb-base",
   "rules": {
-    "no-underscore-dangle": 1,
+    "no-underscore-dangle": 0,
     "no-console": 0,
-    "quotes": [2, "single"]
+    "quotes": [2, "single"],
+    "arrow-body-style": ["error", "always"],
+    "requireForBlockBody": true
   }
 }

@@ -2,9 +2,10 @@
   "name": "around-express",
   "version": "1.0.0",
   "description": "## Directories",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server -a localhost -p 3000",
+    "dev": "nodemon app.js"
   },
   "repository": {
     "type": "git",
