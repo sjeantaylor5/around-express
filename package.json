@@ -4,7 +4,7 @@
   "description": "## Directories",
   "main": "app.js",
   "scripts": {
-    "start": "http-server -a localhost -p 3000",
+    "start": "node app.js",
     "dev": "nodemon app.js"
   },
   "repository": {
