@@ -9,7 +9,7 @@ const { PORT = 3000 } = process.env;
 app.use('/', usersRouter);
 app.use('/', cardsRouter);
 
-app.get('*', function(req, res) {
+app.get('*', (req, res) => {
   res.status(404).send({ message: 'Requested resource not found' });
 });
 
