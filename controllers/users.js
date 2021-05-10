@@ -3,13 +3,13 @@ const dataPath = path.join(__dirname, '..', 'data', 'users.json');
 const getDataFromFile = require('../helpers/files.js');
 
 const getUsers = (req, res) => {
-  getDataFromFile(dataPath)
+  getDataFromFile(res, dataPath)
     .then(users => res.status(200).send(users))
     .catch(err => res.status(500).send(err));
 };
 
 const getProfile = (req, res) => {
-  return getDataFromFile(dataPath)
+  return getDataFromFile(res, dataPath)
     .then((users) => users.find(user => user._id === req.params._id))
     .then((user) => {
       if (!user) {
