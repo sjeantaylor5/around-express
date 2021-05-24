@@ -5,4 +5,6 @@ router.get('/cards', getCards);
 
 router.post('/cards', createCard);
 
+// router.delete('/cards/:cardId', deleteCard);
+
 module.exports = router;
