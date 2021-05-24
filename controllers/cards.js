@@ -1,11 +1,20 @@
-const path = require('path');
-const dataPath = path.join(__dirname, '..', 'data', 'cards.json');
-const getDataFromFile = require('../helpers/files.js');
+const Card = require('../models/card.js');
 
 const getCards = (req, res) => {
-  getDataFromFile(res, dataPath)
+  return Card.find({})
     .then(users => res.status(200).send(users))
-    .catch(err => res.status(500).send(err));
+    .catch(err => res.status(500).send({ message: err }));
 };
 
-module.exports = getCards;
+const createCard = (req, res) => {
+  return Card.countDocuments({})
+    .then((_id) => {
+      return Card.create({ ...req.body, _id })
+        .then((user) => {
+         res.status(200).send(user);
+        })
+        .catch((err) => res.status(400).send(err));
+    });
+};
+
+module.exports = { getCards, createCard };
