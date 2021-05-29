@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-// const regex = /(http|https):\/\/(www.)?[a-zA-Z0-9._~:/?%#[]@!$&'()*+,;=]{2,256}\#?/
+const validator = require('validator');
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -17,11 +17,11 @@ const userSchema = new mongoose.Schema({
   avatar: {
     type: String,
     required: true,
-    // validate: {
-    //  validator: function(v) {
-    //    return regex.test(v);
-    //  }
-    // }
+    validate: {
+     validator: (v) => {
+       return validator.isUrl(v);
+     }
+    }
   }
 });
 

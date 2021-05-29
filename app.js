@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
 const usersRouter = require('./routes/users.js');
 const cardsRouter = require('./routes/cards.js');
 
@@ -14,7 +13,7 @@ mongoose.connect('mongodb://localhost:27017/aroundb', {
   useFindAndModify: false
 });
 
-app.use(bodyParser.json());
+app.use(express.json());
 app.use('/', usersRouter);
 app.use('/', cardsRouter);
 

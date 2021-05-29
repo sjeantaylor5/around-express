@@ -19,14 +19,11 @@ const getProfile = (req, res) => {
 };
 
 const createProfile = (req, res) => {
-  return User.countDocuments({})
-    .then((_id) => {
-      return User.create({ ...req.body, _id })
-        .then((user) => {
-         res.status(200).send(user);
-        })
-        .catch((err) => res.status(400).send(err));
-    });
+  return User.create({ name: req.body.name, about: req.body.about, avatar: req.body.avatar })
+    .then((user) => {
+      res.status(200).send(user);
+    })
+    .catch((err) => res.status(400).send(err));
 };
 
 module.exports = { getUsers, getProfile, createProfile };
