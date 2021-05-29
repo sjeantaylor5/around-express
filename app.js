@@ -3,9 +3,8 @@ const mongoose = require('mongoose');
 const usersRouter = require('./routes/users.js');
 const cardsRouter = require('./routes/cards.js');
 
-const app = express();
-
 const { PORT = 3000 } = process.env;
+const app = express();
 
 mongoose.connect('mongodb://localhost:27017/aroundb', {
   useNewUrlParser: true,
@@ -18,7 +17,7 @@ app.use('/', usersRouter);
 app.use('/', cardsRouter);
 app.use((req, res, next) => {
   req.user = {
-    _id: '' // add test user id
+    _id: '60b2c649c0f4ff03dcbecc36'
   };
 
   next();
@@ -29,5 +28,5 @@ app.get('*', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`app listening at port ${PORT}`);
+  console.log(`App listening at port ${PORT}`);
 });

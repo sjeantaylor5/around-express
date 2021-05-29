@@ -7,38 +7,38 @@ const getCards = (req, res) => {
 };
 
 const createCard = (req, res) => {
-  return Card.countDocuments({})
-    .then((_id) => {
-      return Card.create({ ...req.body, _id })
-        .then((user) => {
-         res.status(200).send(user);
-        })
-        .catch((err) => res.status(400).send(err));
-    });
+  return Card.create({ name: req.body.name, link: req.body.link })
+    .then((user) => {
+      console.log(req.user._id);
+      res.status(200).send(user);
+    })
+    .catch((err) => res.status(400).send(err));
 };
 
 const deleteCard = (req, res) => {
-  Card.remove()
+  return Card.remove()
     .then(user => {
       res.status(200).send(user);
     })
     .catch((err) => res.status(400).send(err));
 };
 
-module.exports.createCard = (req, res) => {
-  console.log(req.user._id);
-};
-
-module.exports.likeCard = (req, res) => Card.findByIdAndUpdate(
+const likeCard = (req, res) => Card.findByIdAndUpdate(
   req.params.cardId,
   { $addToSet: { likes: req.user._id } },
   { new: true }
 );
 
-module.exports.dislikeCard = (req, res) => Card.findByIdAndUpdate(
+const dislikeCard = (req, res) => Card.findByIdAndUpdate(
   req.params.cardId,
   { $pull: { likes: req.user._id } },
   { new: true }
 );
 
-module.exports = { getCards, createCard, deleteCard };
+module.exports = {
+  getCards,
+  createCard,
+  deleteCard,
+  likeCard,
+  dislikeCard
+};
