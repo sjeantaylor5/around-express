@@ -26,4 +26,8 @@ const createProfile = (req, res) => {
     .catch((err) => res.status(400).send(err));
 };
 
-module.exports = { getUsers, getProfile, createProfile };
+module.exports = {
+  getUsers,
+  getProfile,
+  createProfile,
+};
