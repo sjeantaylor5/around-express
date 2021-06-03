@@ -7,7 +7,7 @@ const getUsers = (req, res) => {
 };
 
 const getProfile = (req, res) => {
-  return User.find({ _id: req.params._id })
+  return User.find({ _id: req.params._id }).orFail(new Error('Not Found'))
     .then((user) => res.status(200).send(user))
     .catch((err) => {
       if (err.message === 'Not Found') {

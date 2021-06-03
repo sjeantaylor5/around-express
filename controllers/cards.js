@@ -1,7 +1,7 @@
 const Card = require('../models/card.js');
 
 const getCards = (req, res) => {
-  return Card.find({}).orFail(new Error('Error'))
+  return Card.find({})
     .then(user => res.status(200).send(user))
     .catch((err) => {
       if (err.message === 'Error') {
